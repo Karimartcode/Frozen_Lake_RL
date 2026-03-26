@@ -38,17 +38,17 @@ CASE_3_MAP = [
 
 STUDY_CASES = {
     "case_1": {
-        "desc": "Simple 4x4 - 1 hole, low danger",
+        "desc": "Simple 4x4 - 1 trou, faible danger",
         "map": CASE_1_MAP,
         "size": 4
     },
     "case_2": {
-        "desc": "Medium 8x8 - 10 holes, moderate danger",
+        "desc": "Modéré 8x8 - 10 trous, danger modéré",
         "map": CASE_2_MAP,
         "size": 8
     },
     "case_3": {
-        "desc": "Hard 8x8 - 17 holes, high danger",
+        "desc": "Difficile 8x8 - 17 trous, danger élevé",
         "map": CASE_3_MAP,
         "size": 8
     }

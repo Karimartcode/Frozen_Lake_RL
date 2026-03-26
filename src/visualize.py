@@ -70,15 +70,15 @@ def visualize_all_cases(save_path=None):
         visualize_grid(case_name, ax=axes[idx])
 
     legend_elements = [
-        mpatches.Patch(facecolor=CELL_COLORS['S'], edgecolor='black', label='Start (S)'),
-        mpatches.Patch(facecolor=CELL_COLORS['F'], edgecolor='black', label='Frozen (F)'),
-        mpatches.Patch(facecolor=CELL_COLORS['H'], edgecolor='black', label='Hole (H)'),
-        mpatches.Patch(facecolor=CELL_COLORS['G'], edgecolor='black', label='Goal (G)'),
+        mpatches.Patch(facecolor=CELL_COLORS['S'], edgecolor='black', label='Départ (S)'),
+        mpatches.Patch(facecolor=CELL_COLORS['F'], edgecolor='black', label='Gelé (F)'),
+        mpatches.Patch(facecolor=CELL_COLORS['H'], edgecolor='black', label='Trou (H)'),
+        mpatches.Patch(facecolor=CELL_COLORS['G'], edgecolor='black', label='Objectif (G)'),
     ]
     fig.legend(handles=legend_elements, loc='lower center',
                ncol=4, fontsize=12, bbox_to_anchor=(0.5, -0.02))
 
-    plt.suptitle("Frozen Lake Study Cases", fontsize=16, fontweight='bold', y=1.02)
+    plt.suptitle("Cas d'étude Frozen Lake", fontsize=16, fontweight='bold', y=1.02)
     plt.tight_layout()
 
     if save_path:
@@ -91,7 +91,7 @@ def plot_training_curves(results, metric, title, ylabel, save_path=None):
     strategies = list(results.keys())
     colors = sns.color_palette("husl", len(strategies))
 
-    fig, axes = plt.subplots(1, len(cases), figsize=(6 * len(cases), 5))
+    fig, axes = plt.subplots(1, len(cases), figsize=(6 * len(cases), 4))
     if len(cases) == 1:
         axes = [axes]
 
@@ -112,7 +112,7 @@ def plot_training_curves(results, metric, title, ylabel, save_path=None):
                                 alpha=0.2, color=colors[s_idx])
 
         ax.set_title(STUDY_CASES[case_name]["desc"], fontsize=12)
-        ax.set_xlabel("Training Steps")
+        ax.set_xlabel("Pas d'entraînement")
         ax.set_ylabel(ylabel)
         ax.legend(fontsize=10)
         ax.grid(True, alpha=0.3)
@@ -185,7 +185,7 @@ def compare_policies(policies, case_name, save_path=None):
     for idx, (strategy_name, Q_vals) in enumerate(policies.items()):
         visualize_policy(Q_vals, case_name, strategy_name, ax=axes[idx])
 
-    plt.suptitle(f"Policy Comparison - {case_name}", fontsize=15, fontweight='bold')
+    plt.suptitle(f"Comparaison des politiques - {case_name}", fontsize=15, fontweight='bold')
     plt.tight_layout()
 
     if save_path:

@@ -103,8 +103,8 @@ def generate_figures(all_results, all_policies):
                 "success_rate": data["eval_success_rates_mean"],
                 "success_rate_std": data["eval_success_rates_std"],
             }
-    plot_training_curves(formatted, "success_rate", "Success Rate During Training",
-                         "Success Rate",
+    plot_training_curves(formatted, "success_rate", "Taux de succès durant l'entraînement",
+                         "Taux de succès",
                          save_path=os.path.join(FIGURES_DIR, "success_rate.png"))
 
     # Taux de chutes (evaluation)
@@ -119,8 +119,8 @@ def generate_figures(all_results, all_policies):
                 "hole_rate_std": data["eval_hole_rates_std"],
             }
     plot_training_curves(formatted_holes, "hole_rate",
-                         "Hole Fall Rate During Training (Evaluation)",
-                         "Hole Fall Rate",
+                         "Taux de chutes durant l'entraînement (évaluation)",
+                         "Taux de chutes",
                          save_path=os.path.join(FIGURES_DIR, "hole_rate.png"))
 
     # Recompense moyenne
@@ -134,8 +134,8 @@ def generate_figures(all_results, all_policies):
                 "reward": data["eval_mean_rewards_mean"],
                 "reward_std": data["eval_mean_rewards_std"],
             }
-    plot_training_curves(formatted_rewards, "reward", "Mean Reward During Training",
-                         "Mean Reward",
+    plot_training_curves(formatted_rewards, "reward", "Récompense moyenne durant l'entraînement",
+                         "Récompense moyenne",
                          save_path=os.path.join(FIGURES_DIR, "mean_reward.png"))
 
     # Taux de chutes cumulatif (entrainement)
@@ -150,8 +150,8 @@ def generate_figures(all_results, all_policies):
                 "train_hole_rate_std": data["train_hole_rates_std"],
             }
     plot_training_curves(formatted_train_holes, "train_hole_rate",
-                         "Cumulative Hole Fall Rate During Training",
-                         "Cumulative Hole Fall Rate",
+                         "Taux de chutes cumulatif durant l'entraînement",
+                         "Taux de chutes cumulatif",
                          save_path=os.path.join(FIGURES_DIR, "train_hole_rate.png"))
 
     # Politiques

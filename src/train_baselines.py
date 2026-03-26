@@ -273,12 +273,12 @@ def get_policy_from_model(model, case_name):
 
 
 if __name__ == "__main__":
-    print("Test DQN sur case_1...")
+    print("Test DQN sur case_1")
     model_dqn, results_dqn = train_dqn("case_1", seed=42)
     print(f"  Succes: {results_dqn['eval_success_rates'][-1]:.2%}")
     print(f"  Chutes: {results_dqn['eval_hole_rates'][-1]:.2%}")
 
-    print("Test PPO sur case_1...")
+    print("Test PPO sur case_1")
     model_ppo, results_ppo = train_ppo("case_1", seed=42)
     print(f"  Succes: {results_ppo['eval_success_rates'][-1]:.2%}")
     print(f"  Chutes: {results_ppo['eval_hole_rates'][-1]:.2%}")
