@@ -1,0 +1,19 @@
+\begin{table}[H]
+\centering
+\caption{Comparaison des performances des stratégies de référence (moyenne $\pm$ écart-type, 5 graines).}
+\label{tab:baseline_results}
+\small
+\begin{tabular}{llccc}
+\toprule
+Stratégie & Cas & Taux de succès & Taux de chutes & Récompense moy. \\
+\midrule
+DQN & Cas 1 & $99.0 \pm 2.0\%$ & $0.0 \pm 0.0\%$ & $0.990 \pm 0.020$ \\
+DQN & Cas 2 & $41.0 \pm 18.5\%$ & $2.0 \pm 4.0\%$ & $0.410 \pm 0.185$ \\
+DQN & Cas 3 & $0.0 \pm 0.0\%$ & $99.0 \pm 2.0\%$ & $0.000 \pm 0.000$ \\
+\midrule
+PPO & Cas 1 & $100.0 \pm 0.0\%$ & $0.0 \pm 0.0\%$ & $1.000 \pm 0.000$ \\
+PPO & Cas 2 & $27.0 \pm 24.8\%$ & $14.0 \pm 17.4\%$ & $0.270 \pm 0.248$ \\
+PPO & Cas 3 & $0.0 \pm 0.0\%$ & $100.0 \pm 0.0\%$ & $0.000 \pm 0.000$ \\
+\bottomrule
+\end{tabular}
+\end{table}
