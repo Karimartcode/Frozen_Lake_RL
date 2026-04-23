@@ -91,7 +91,7 @@ def plot_training_curves(results, metric, title, ylabel, save_path=None):
     strategies = list(results.keys())
     colors = sns.color_palette("husl", len(strategies))
 
-    fig, axes = plt.subplots(1, len(cases), figsize=(6 * len(cases), 4))
+    fig, axes = plt.subplots(1, len(cases), figsize=(6 * len(cases), 4), sharey=True)
     if len(cases) == 1:
         axes = [axes]
 
@@ -103,19 +103,29 @@ def plot_training_curves(results, metric, title, ylabel, save_path=None):
             mean_vals = data[metric]
             std_vals = data.get(f"{metric}_std", None)
 
-            ax.plot(episodes, mean_vals, label=strategy,
+            # Normaliser l'axe X en pourcentage de progression
+            max_ep = max(episodes) if episodes else 1
+            norm_episodes = [e / max_ep * 100 for e in episodes]
+
+            ax.plot(norm_episodes, mean_vals, label=strategy,
                     color=colors[s_idx], linewidth=2)
             if std_vals is not None:
-                ax.fill_between(episodes,
+                ax.fill_between(norm_episodes,
                                 np.array(mean_vals) - np.array(std_vals),
                                 np.array(mean_vals) + np.array(std_vals),
                                 alpha=0.2, color=colors[s_idx])
 
         ax.set_title(STUDY_CASES[case_name]["desc"], fontsize=12)
-        ax.set_xlabel("Pas d'entraînement")
-        ax.set_ylabel(ylabel)
-        ax.legend(fontsize=10)
+        ax.set_xlabel("Progression de l'entraînement (%)")
+        if idx == 0:
+            ax.set_ylabel(ylabel)
+        ax.legend(fontsize=9)
         ax.grid(True, alpha=0.3)
+        ax.set_xlim(0, 100)
+
+        # Axes Y identiques pour les taux et recompenses (0 a 1)
+        if any(k in metric for k in ["rate", "reward"]):
+            ax.set_ylim(-0.05, 1.05)
 
     plt.suptitle(title, fontsize=14, fontweight='bold')
     plt.tight_layout()
@@ -178,9 +188,13 @@ def visualize_policy(Q_values, case_name, strategy_name, save_path=None, ax=None
 
 def compare_policies(policies, case_name, save_path=None):
     n = len(policies)
-    fig, axes = plt.subplots(1, n, figsize=(7 * n, 7))
-    if n == 1:
-        axes = [axes]
+    if n == 4:
+        fig, axes = plt.subplots(2, 2, figsize=(14, 14))
+        axes = axes.flatten()
+    else:
+        fig, axes = plt.subplots(1, n, figsize=(7 * n, 7))
+        if n == 1:
+            axes = [axes]
 
     for idx, (strategy_name, Q_vals) in enumerate(policies.items()):
         visualize_policy(Q_vals, case_name, strategy_name, ax=axes[idx])
